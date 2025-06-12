@@ -1,17 +1,6 @@
-class AccountOverviewPage {
-  get welcomeText() {
-    return cy.get('[class="title"]');
-  }
-  get successfullyRegisterText() {
-    return cy.get("div#rightPanel p");
-  }
-  get logoutButton() {
-    return cy.contains("Log Out");
-  }
-  get welcomeMessageText() {
-   return cy.get('div#leftPanel b')
-  }
-  get accountServicesTitle() {
+class AccountServicesMenuPage{
+
+get accountServicesTitle() {
     return cy.contains('h2', 'Account Services');
   }
   get openNewAccountLink() {
@@ -36,22 +25,16 @@ class AccountOverviewPage {
   get requestLoanLink() {
     return cy.contains('a', 'Request Loan');
   }
-
+get logoutButton() {
+    return cy.contains("Log Out");
+  }
+    
   clickLogoutButton() {
     this.logoutButton.click();
   }
 
-  verifyWelcomeMessageIsVisible(expectedText) {
-    this.welcomeText.should("be.visible", expectedText);
-  }
-
-  verifyAccountSuccessfullyCreatedMessageIsVisible(expectedText) {
-    this.successfullyRegisterText.should("be.visible", expectedText);
-  }
-
-  clickOpenNewAccountLink() {
+    clickOpenNewAccountLink() {
     this.openNewAccountLink.click();
   }
-
 }
-export default new AccountOverviewPage();
+export default  new  AccountServicesMenuPage();

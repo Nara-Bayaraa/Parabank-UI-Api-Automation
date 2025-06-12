@@ -45,7 +45,18 @@ class RegisterPage {
   get lastNameRequiredText() {
     return cy.get('[id="customer.lastName.errors"]');
   }
-
+// after register
+  get welcomeText() {
+    return cy.get('[class="title"]');
+  }
+  get successfullyRegisterText() {
+    return cy.get("div#rightPanel p");
+  }
+  
+  get welcomeMessageText() {
+   return cy.get('div#leftPanel b')
+  }
+  
   typeFirstName(firstName) {
     if (firstName && firstName.length > 0) {
       this.firstNameInputField.type(firstName);
@@ -147,6 +158,14 @@ class RegisterPage {
 
   verifyLastNameRequiredMessageIsVisible() {
     this.lastNameRequiredText.should("be.visible");
+  }
+
+    verifyWelcomeMessageIsVisible(expectedText) {
+    this.welcomeText.should("be.visible", expectedText);
+  }
+
+  verifyAccountSuccessfullyCreatedMessageIsVisible(expectedText) {
+    this.successfullyRegisterText.should("be.visible", expectedText);
   }
   
 }

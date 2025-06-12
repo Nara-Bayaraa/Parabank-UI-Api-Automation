@@ -1,6 +1,6 @@
 import RegisterPage from "../../support/page-objects/register.page";
 import HomePage from "../../support/page-objects/home.page";
-import AccountDashboardPage from "../../support/page-objects/account-overview.page";
+import AccountsOverviewPage from "../../support/page-objects/account-overview.page";
 import { generateUserRegistrationData } from "../../support/helpers/generate-data";
 
 describe("User Registration -Positive Test Cases", () => {
@@ -32,10 +32,10 @@ describe("User Registration -Positive Test Cases", () => {
     RegisterPage.typePassword(registerData.password);
     RegisterPage.typeConfirmPassword(registerData.confirmPassword);
     RegisterPage.clickRegisterButton();
-    AccountDashboardPage.verifyWelcomeMessageIsVisible(
+    RegisterPage.verifyWelcomeMessageIsVisible(
       successMessage.WELCOME_MSG
     );
-    AccountDashboardPage.verifyAccountSuccessfullyCreatedMessageIsVisible(
+    RegisterPage.verifyAccountSuccessfullyCreatedMessageIsVisible(
       successMessage.ACCOUNT_SUCCESSFULLY_CREATED_MSG
     );
         cy.log(`username ${registerData.username}`);

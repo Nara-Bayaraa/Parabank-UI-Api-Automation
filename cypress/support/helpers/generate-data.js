@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 
 export const generateUserRegistrationData = () => {
   const password = faker.internet.password();
-const unique = `${faker.person.firstName().toLowerCase()}${faker.string.alphanumeric(4)}}`;
+const unique = `${faker.person.firstName().toLowerCase()}${faker.string.alphanumeric(4)}`;
 
   return {
     firstName: faker.person.firstName(),

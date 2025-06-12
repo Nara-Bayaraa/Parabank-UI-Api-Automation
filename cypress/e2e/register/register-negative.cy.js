@@ -21,7 +21,7 @@ describe("User Registration -Negative Test  Cases", () => {
         cy.wrap(user.username).as("username");
       });
     });
-    cy.visit("/register.htm"); // ⬅️ Go back to registration page for the test
+    cy.visit("/register.htm"); 
   });
 
   it("[REG-001] should not allow registration with an existing username", function () {

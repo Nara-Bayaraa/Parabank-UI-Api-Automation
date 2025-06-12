@@ -29,7 +29,7 @@ class HomePage {
 
   typeUserName(username) {
     if (username && username.length > 0) {
-      this.loginFieldInput.type(username);
+      this.loginFieldInput.should("be.visible").focus().type(username);
     } else {
       this.loginFieldInput.clear();
     }
@@ -37,7 +37,7 @@ class HomePage {
 
   typePassword(password) {
     if (password && password.length > 0) {
-      this.passwordFieldInput.type(password);
+      this.passwordFieldInput.should("be.visible").focus().type(password);
     } else {
       this.passwordFieldInput.clear();
     }
