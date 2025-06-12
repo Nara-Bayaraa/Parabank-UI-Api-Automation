@@ -4,7 +4,7 @@ import AccountDetailsPage from "../../support/page-objects/account-details.page"
 import OpenNewAccountPage from "../../support/page-objects/open-new-account.page";
 
 describe("Open New Checking Account  Functionality", () => {
-  
+
   let accountNumber;
   let username;
   let password;
@@ -36,7 +36,6 @@ describe("Open New Checking Account  Functionality", () => {
     OpenNewAccountPage.createAccount("CHECKING");
     AccountOpenedConfirmationPage.getAccountNumber().then((num) => {
       accountNumber = num;
-
       AccountOpenedConfirmationPage.clickAccountNumber();
       cy.url().should("include", `/activity.htm?id=${accountNumber}`);
       AccountDetailsPage.getBalances().then(({ balance, available }) => {
@@ -48,9 +47,7 @@ describe("Open New Checking Account  Functionality", () => {
         );
       });
     });
-
-    AccountDetailsPage.getTransactionRowValues(0).then(
-      ({ date, description, debitAmount, creditAmount }) => {
+    AccountDetailsPage.getTransactionRowValues(0).then(({ date, description, debitAmount, creditAmount }) => {
         AccountDetailsPage.verifyTransaction({
           shouldExist: true,
           date,
@@ -59,34 +56,29 @@ describe("Open New Checking Account  Functionality", () => {
           amount: debitAmount,
         });
         cy.log(`credit amount is ${creditAmount}`);
-      }
-    );
+      });
   });
+ 
 
   it("[CHECKING-003] should filter transactions by month and type (no debits)", () => {
     cy.loginUser(username, password);
     AccountServicesMenuPage.clickOpenNewAccountLink();
     OpenNewAccountPage.createAccount("CHECKING");
-    AccountOpenedConfirmationPage.getAccountNumber().then((num) => {
-      accountNumber = num;
       AccountOpenedConfirmationPage.clickAccountNumber();
       AccountDetailsPage.selectFilters("April", "Debit");
       AccountDetailsPage.clickGoButton();
       AccountDetailsPage.verifyFilteredResultsVisible({ shouldExist: false });
       AccountDetailsPage.verifyNoTransactionsFoundTextIsDisplayed();
     });
-  });
+
 
   it("[CHECKING-004] should filter transactions by month and type (show credit)", () => {
     cy.loginUser(username, password);
     AccountServicesMenuPage.clickOpenNewAccountLink();
     OpenNewAccountPage.createAccount("CHECKING");
-    AccountOpenedConfirmationPage.getAccountNumber().then((num) => {
-      accountNumber = num;
       AccountOpenedConfirmationPage.clickAccountNumber();
       AccountDetailsPage.selectFilters("June", "Credit");
       AccountDetailsPage.clickGoButton();
-    });
     AccountDetailsPage.getTransactionRowValues(0).then(
       ({ date, description, debitAmount, creditAmount }) => {
         AccountDetailsPage.verifyTransaction({
@@ -97,8 +89,7 @@ describe("Open New Checking Account  Functionality", () => {
           amount: debitAmount,
         });
         cy.log(`credit amount is ${creditAmount}`);
-      }
-    );
+      });
   });
 });
 

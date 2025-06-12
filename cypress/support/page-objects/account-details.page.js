@@ -34,7 +34,7 @@ class AccountDetailsPage {
   get noTransactionsFoundText() {
     return cy.get('[id="noTransactions"]');
   }
-    get transactionTable() {return cy.get('[id="transactionTable"]')}
+get transactionTable() {return cy.get('[id="transactionTable"]')}
 get dateHeader() {return cy.get('[id="transactionTable"] th').eq(0)}
 get transactionHeader() {return cy.get('[id="transactionTable"] th').eq(1)}
 get debitHeader() {return cy.get('[id="transactionTable"] th').eq(2)}
@@ -42,17 +42,8 @@ get creditHeader() {return cy.get('[id="transactionTable"] th').eq(3)}
 
 
   getBalances() {
-    // Returns a promise-like object containing both values
-    return cy
-      .contains("Balance:")
-      .next()
-      .invoke("text")
-      .then((balanceText) => {
-        return cy
-          .contains("Available:")
-          .next()
-          .invoke("text")
-          .then((availableText) => {
+    return cy.contains("Balance:").next().invoke("text").then((balanceText) => {
+        return cy.contains("Available:").next().invoke("text").then((availableText) => {
             return {
               balance: balanceText.trim(),
               available: availableText.trim()
@@ -60,23 +51,6 @@ get creditHeader() {return cy.get('[id="transactionTable"] th').eq(3)}
           });
       });
   }
-
-// getTransactionRowValues(rowIndex = 0) {
-//   // Returns all cells' text as an object for a given row
-//   return this.getTransactionRow(rowIndex).within(() => {
-//     cy.get("td").then(($tds) => {
-//       // Assumes columns: date, description, debit, credit
-//       const date = $tds.eq(0).textContent.trim();
-//       const description = $tds.eq(1).textContent.trim();
-//       const debitAmount = $tds.eq(2).textContent.trim();
-//       const creditAmount = $tds.eq(3).textContent.trim();
-//       cy.wrap({ date, description, debitAmount, creditAmount });
-//     });
-//   });
-// }
-// getAccountActivity(){
-// this.dateHeader.
-// }
 
    getTransactionRow = (rowIndex = 0) => {
     return cy.get('[id="transactionTable"] tbody tr').eq(rowIndex);
@@ -112,7 +86,6 @@ getTransactionRowValues(rowIndex = 0) {
   }
   }
   
-
   selectFilters(month, type) {
     this.activityPeriodDropdown.select(month);
     this.typeDropdown.select(type);
